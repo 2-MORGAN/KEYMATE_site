@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>À propos — KeyMate</title>
+  <meta name="description" content="L'équipe 2Morgan derrière KeyMate, l'assistant d'accordage d'orgue.">
+  <link rel="icon" href="assets/logo/keymate-favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/logo/keymate-icone-app-180.png">
+  <script>try{document.documentElement.dataset.theme=localStorage.getItem('km-theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark')}catch(e){document.documentElement.dataset.theme='dark'}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap">
+  <link rel="stylesheet" href="assets/keymate-tokens.css">
+  <link rel="stylesheet" href="site.css?v=2">
+  <script src="site.js?v=2" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#contenu">Aller au contenu</a>
+<header class="site-nav">
+  <div class="wrap in">
+    <a class="kn-btn kn-btn--ghost nav-dash" href="https://app.keymate.com">Dashboard</a>
+    <a class="nav-brand" href="index.html" aria-label="KeyMate, accueil"><svg viewBox="0 0 64 64" aria-hidden="true"><g fill="currentColor" fill-rule="evenodd"><path d="M6.5 50 V29.5 A3.5 3.5 0 0 1 13.5 29.5 V50 Z M8 40 h4 v4 h-4 Z"/><path d="M17.5 50 V19.5 A3.5 3.5 0 0 1 24.5 19.5 V50 Z M19 40 h4 v4 h-4 Z"/><path d="M39.5 50 V19.5 A3.5 3.5 0 0 1 46.5 19.5 V50 Z M41 40 h4 v4 h-4 Z"/><path d="M50.5 50 V29.5 A3.5 3.5 0 0 1 57.5 29.5 V50 Z M52 40 h4 v4 h-4 Z"/><rect x="2" y="52" width="60" height="5" rx="2.5"/></g><g style="fill:var(--kn-accent)" fill-rule="evenodd"><path d="M28.5 50 V9.5 A3.5 3.5 0 0 1 35.5 9.5 V50 Z M30 40 h4 v4 h-4 Z"/><rect x="25" y="58" width="14" height="5" rx="2"/></g></svg><span>KeyMate</span></a>
+    <nav class="nav-links" aria-label="Navigation principale">
+      <a href="index.html">Le produit</a>
+      <a href="a-propos.html" aria-current="page">À propos</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <button class="kn-btn nav-theme" id="theme" type="button">Clair</button>
+  </div>
+</header>
+
+<main id="contenu" class="wrap">
+  <div class="page-head">
+    <h1>Six ingénieurs, un orgue, et une question&nbsp;: pourquoi faut-il être deux pour l'accorder&nbsp;?</h1>
+    <p class="lede">2Morgan conçoit des instruments de mesure connectés pour les métiers de la facture instrumentale. KeyMate est son premier outil, né d'un projet d'école à l'EPITA.</p>
+  </div>
+
+  <!-- Portraits&nbsp;: déposer assets/equipe/<prenom>.jpg (4:5). Tant que le fichier manque, les initiales restent affichées. -->
+  <div class="team" data-cascade>
+    <article class="person drop" style="--i:0;--r:-3deg">
+      <div class="photo"><span class="initials" aria-hidden="true">SB</span><img src="assets/equipe/stanislas.jpg" alt="Portrait de Stanislas Beguin" loading="lazy" onerror="this.remove()"></div>
+      <h2>Stanislas Beguin</h2><p class="role">Chef de projet</p><p class="scope">Arbitrages, planning et budget de l'équipe.</p>
+    </article>
+    <article class="person drop" style="--i:1;--r:4deg">
+      <div class="photo"><span class="initials" aria-hidden="true">JD</span><img src="assets/equipe/jacques.jpg" alt="Portrait de Jacques Dai" loading="lazy" onerror="this.remove()"></div>
+      <h2>Jacques Dai</h2><p class="role">Assemblage</p><p class="scope">Mécanique du rail et des modules, câblage, soudure, impression 3D.</p>
+    </article>
+    <article class="person drop" style="--i:2;--r:-5deg">
+      <div class="photo"><span class="initials" aria-hidden="true">FJ</span><img src="assets/equipe/florent.jpg" alt="Portrait de Florent Jin" loading="lazy" onerror="this.remove()"></div>
+      <h2>Florent Jin</h2><p class="role">Embarqué et simulation</p><p class="scope">Le programme des modules et son banc de simulation.</p>
+    </article>
+    <article class="person drop" style="--i:3;--r:3deg">
+      <div class="photo"><span class="initials" aria-hidden="true">AB</span><img src="assets/equipe/antoine.jpg" alt="Portrait d'Antoine Blumenroeder" loading="lazy" onerror="this.remove()"></div>
+      <h2>Antoine Blumenroeder</h2><p class="role">Cloud et application</p><p class="scope">L'application de terrain, l'analyse du son et le tableau de bord.</p>
+    </article>
+    <article class="person drop" style="--i:4;--r:-4deg">
+      <div class="photo"><span class="initials" aria-hidden="true">AS</span><img src="assets/equipe/amalraj.jpg" alt="Portrait d'Amalraj Soupramanien" loading="lazy" onerror="this.remove()"></div>
+      <h2>Amalraj Soupramanien</h2><p class="role">Renfort</p><p class="scope">En appui sur les lots, là où l'équipe en a besoin.</p>
+    </article>
+    <article class="person drop" style="--i:5;--r:5deg">
+      <div class="photo"><span class="initials" aria-hidden="true">AF</span><img src="assets/equipe/amiel.jpg" alt="Portrait d'Amiel Fabreguettes" loading="lazy" onerror="this.remove()"></div>
+      <h2>Amiel Fabreguettes</h2><p class="role">Interface application ↔ modules</p><p class="scope">Garant du contrat entre l'application et les modules.</p>
+    </article>
+  </div>
+
+  <div class="about-note prose">
+    <p class="lede">KeyMate ne remplace pas l'oreille du facteur. Il lui rend les mains libres.</p>
+    <p><a class="kn-btn kn-btn--primary" href="contact.html">Nous écrire</a></p>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap in">
+    <div class="foot-brand"><svg viewBox="0 0 64 64" aria-hidden="true"><g fill="currentColor"><path d="M6.5 50 V29.5 A3.5 3.5 0 0 1 13.5 29.5 V50 Z"/><path d="M17.5 50 V19.5 A3.5 3.5 0 0 1 24.5 19.5 V50 Z"/><path d="M39.5 50 V19.5 A3.5 3.5 0 0 1 46.5 19.5 V50 Z"/><path d="M50.5 50 V29.5 A3.5 3.5 0 0 1 57.5 29.5 V50 Z"/><rect x="2" y="52" width="60" height="5" rx="2.5"/></g><g style="fill:var(--kn-accent)"><path d="M28.5 50 V9.5 A3.5 3.5 0 0 1 35.5 9.5 V50 Z"/><rect x="25" y="58" width="14" height="5" rx="2"/></g></svg><div><b>KeyMate</b><span class="kn-label">Un outil 2Morgan</span></div></div>
+    <nav class="foot-links" aria-label="Pied de page"><a href="index.html">Le produit</a><a href="a-propos.html">À propos</a><a href="contact.html">Contact</a><a href="mentions-legales.html">Mentions légales</a></nav>
+    <p class="foot-meta">2Morgan · <a href="mailto:2morgan.sigl@gmail.com">2morgan.sigl@gmail.com</a> · © 2026 · KeyMate est une marque de 2Morgan.</p>
+  </div>
+</footer>
+</body>
+</html>

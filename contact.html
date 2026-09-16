@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact — KeyMate</title>
+  <meta name="description" content="Contacter 2Morgan pour une démonstration de KeyMate, une question sur le produit ou la presse.">
+  <link rel="icon" href="assets/logo/keymate-favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/logo/keymate-icone-app-180.png">
+  <script>try{document.documentElement.dataset.theme=localStorage.getItem('km-theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark')}catch(e){document.documentElement.dataset.theme='dark'}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap">
+  <link rel="stylesheet" href="assets/keymate-tokens.css">
+  <link rel="stylesheet" href="site.css?v=2">
+  <script src="site.js?v=2" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#contenu">Aller au contenu</a>
+<header class="site-nav">
+  <div class="wrap in">
+    <a class="kn-btn kn-btn--ghost nav-dash" href="https://app.keymate.com">Dashboard</a>
+    <a class="nav-brand" href="index.html" aria-label="KeyMate, accueil"><svg viewBox="0 0 64 64" aria-hidden="true"><g fill="currentColor" fill-rule="evenodd"><path d="M6.5 50 V29.5 A3.5 3.5 0 0 1 13.5 29.5 V50 Z M8 40 h4 v4 h-4 Z"/><path d="M17.5 50 V19.5 A3.5 3.5 0 0 1 24.5 19.5 V50 Z M19 40 h4 v4 h-4 Z"/><path d="M39.5 50 V19.5 A3.5 3.5 0 0 1 46.5 19.5 V50 Z M41 40 h4 v4 h-4 Z"/><path d="M50.5 50 V29.5 A3.5 3.5 0 0 1 57.5 29.5 V50 Z M52 40 h4 v4 h-4 Z"/><rect x="2" y="52" width="60" height="5" rx="2.5"/></g><g style="fill:var(--kn-accent)" fill-rule="evenodd"><path d="M28.5 50 V9.5 A3.5 3.5 0 0 1 35.5 9.5 V50 Z M30 40 h4 v4 h-4 Z"/><rect x="25" y="58" width="14" height="5" rx="2"/></g></svg><span>KeyMate</span></a>
+    <nav class="nav-links" aria-label="Navigation principale">
+      <a href="index.html">Le produit</a>
+      <a href="a-propos.html">À propos</a>
+      <a href="contact.html" aria-current="page">Contact</a>
+    </nav>
+    <button class="kn-btn nav-theme" id="theme" type="button">Clair</button>
+  </div>
+</header>
+
+<main id="contenu" class="wrap">
+  <div class="page-head">
+    <h1>Parlons de votre instrument.</h1>
+    <p class="lede">Une démonstration, une question sur KeyMate ou une demande de la presse&nbsp;: écrivez-nous, en précisant l'orgue dont vous vous occupez.</p>
+  </div>
+
+  <div class="contact-grid" data-cascade>
+    <section class="kn-card drop" style="--i:0" aria-labelledby="ecrire">
+      <h2 id="ecrire">Nous écrire</h2>
+      <p class="contact-email">2morgan.sigl@gmail.com</p>
+      <p class="fine">Démonstration, question sur le produit ou presse&nbsp;: une seule adresse.</p>
+      <div class="contact-actions">
+        <a class="kn-btn kn-btn--primary" href="mailto:2morgan.sigl@gmail.com?subject=KeyMate">Écrire depuis ma messagerie</a>
+        <button class="kn-btn kn-btn--ghost" type="button" data-copy="2morgan.sigl@gmail.com" data-status="#copyStatus">Copier l'adresse</button>
+      </div>
+      <p class="fine copy-status" id="copyStatus" role="status" aria-live="polite"></p>
+    </section>
+    <section class="kn-card drop" style="--i:1" aria-labelledby="adresse">
+      <h2 id="adresse">Adresse</h2>
+      <!-- ADRESSE FICTIVE, générée pour la maquette. Remplacer par l'adresse réelle de 2Morgan (et dans mentions-legales.html). -->
+      <address>2Morgan<br>17 rue du Dôme<br>67000 Strasbourg<br>France</address>
+      <p class="fine">Visites sur rendez-vous, à demander par e-mail.</p>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap in">
+    <div class="foot-brand"><svg viewBox="0 0 64 64" aria-hidden="true"><g fill="currentColor"><path d="M6.5 50 V29.5 A3.5 3.5 0 0 1 13.5 29.5 V50 Z"/><path d="M17.5 50 V19.5 A3.5 3.5 0 0 1 24.5 19.5 V50 Z"/><path d="M39.5 50 V19.5 A3.5 3.5 0 0 1 46.5 19.5 V50 Z"/><path d="M50.5 50 V29.5 A3.5 3.5 0 0 1 57.5 29.5 V50 Z"/><rect x="2" y="52" width="60" height="5" rx="2.5"/></g><g style="fill:var(--kn-accent)"><path d="M28.5 50 V9.5 A3.5 3.5 0 0 1 35.5 9.5 V50 Z"/><rect x="25" y="58" width="14" height="5" rx="2"/></g></svg><div><b>KeyMate</b><span class="kn-label">Un outil 2Morgan</span></div></div>
+    <nav class="foot-links" aria-label="Pied de page"><a href="index.html">Le produit</a><a href="a-propos.html">À propos</a><a href="contact.html">Contact</a><a href="mentions-legales.html">Mentions légales</a></nav>
+    <p class="foot-meta">2Morgan · <a href="mailto:2morgan.sigl@gmail.com">2morgan.sigl@gmail.com</a> · © 2026 · KeyMate est une marque de 2Morgan.</p>
+  </div>
+</footer>
+</body>
+</html>

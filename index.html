@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KeyMate — l'assistant d'accordage d'orgue</title>
+  <meta name="description" content="KeyMate tient les touches à la place d'une seconde personne et mesure l'écart d'accord de chaque tuyau. Un rail, trois modules, une application.">
+  <link rel="icon" href="assets/logo/keymate-favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/logo/keymate-icone-app-180.png">
+  <script>try{document.documentElement.dataset.theme=localStorage.getItem('km-theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark')}catch(e){document.documentElement.dataset.theme='dark'}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap">
+  <link rel="stylesheet" href="assets/keymate-tokens.css">
+  <link rel="stylesheet" href="site.css?v=2">
+  <script src="site.js?v=2" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#contenu">Aller au contenu</a>
+<header class="site-nav">
+  <div class="wrap in">
+    <a class="kn-btn kn-btn--ghost nav-dash" href="https://app.keymate.com">Dashboard</a>
+    <a class="nav-brand" href="index.html" aria-label="KeyMate, accueil"><svg viewBox="0 0 64 64" aria-hidden="true"><g fill="currentColor" fill-rule="evenodd"><path d="M6.5 50 V29.5 A3.5 3.5 0 0 1 13.5 29.5 V50 Z M8 40 h4 v4 h-4 Z"/><path d="M17.5 50 V19.5 A3.5 3.5 0 0 1 24.5 19.5 V50 Z M19 40 h4 v4 h-4 Z"/><path d="M39.5 50 V19.5 A3.5 3.5 0 0 1 46.5 19.5 V50 Z M41 40 h4 v4 h-4 Z"/><path d="M50.5 50 V29.5 A3.5 3.5 0 0 1 57.5 29.5 V50 Z M52 40 h4 v4 h-4 Z"/><rect x="2" y="52" width="60" height="5" rx="2.5"/></g><g style="fill:var(--kn-accent)" fill-rule="evenodd"><path d="M28.5 50 V9.5 A3.5 3.5 0 0 1 35.5 9.5 V50 Z M30 40 h4 v4 h-4 Z"/><rect x="25" y="58" width="14" height="5" rx="2"/></g></svg><span>KeyMate</span></a>
+    <nav class="nav-links" aria-label="Navigation principale">
+      <a href="index.html" aria-current="page">Le produit</a>
+      <a href="a-propos.html">À propos</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <button class="kn-btn nav-theme" id="theme" type="button">Clair</button>
+  </div>
+</header>
+
+<main id="contenu">
+  <!-- ============ HÉROS ============ -->
+  <section class="hero" id="hero" aria-labelledby="heroWord">
+    <div class="hero-media">
+      <video class="hero-video" id="heroVideo" muted loop playsinline preload="metadata" poster="assets/poster.webp?v=2" aria-label="Animation 3D&nbsp;: trois modules KeyMate se déplacent sur le rail au-dessus du clavier d'une console d'orgue et appuient sur les touches">
+        <source src="assets/keymate-demo.mp4?v=2" type="video/mp4">
+      </video>
+      <div class="hero-illus" id="heroIllus"></div>
+      <div class="hero-scrim"></div>
+    </div>
+    <div class="hero-copy wrap">
+      <div class="hero-inner">
+        <h1 class="hero-word" id="heroWord">KeyMate</h1>
+        <p class="hero-tag" data-intro="2">À la touche près.</p>
+        <p class="hero-sub" data-intro="2">L'assistant d'accordage d'orgue qui tient les touches à votre place. Vous accordez seul, sans seconde personne au clavier.</p>
+        <div class="hero-cta" data-intro="2">
+          <a class="kn-btn kn-btn--primary" href="#fonctionnement">Voir comment ça marche</a>
+          <a class="kn-btn kn-btn--ghost" href="contact.html">Nous contacter</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-controls">
+      <button class="kn-btn" id="skipIntro" type="button" hidden>Passer l'introduction</button>
+      <button class="kn-btn" id="playVideo" type="button" hidden>Mettre en pause</button>
+    </div>
+  </section>
+
+  <!-- ============ CONSTAT ============ -->
+  <section class="section" id="probleme">
+    <div class="wrap problem">
+      <div class="section-head" style="margin:0">
+        <h2>Accorder un orgue immobilise deux personnes pour le travail d'une seule.</h2>
+      </div>
+      <div class="prose">
+        <p>Un tuyau ne sonne que si sa touche reste enfoncée. Pendant que le facteur règle le tuyau dans le buffet, une seconde personne reste assise au clavier et enfonce chaque note, une par une.</p>
+        <p>Deux agendas à faire coïncider, une paire de mains mobilisée sans rien décider, et un angle mort&nbsp;: l'orgue bouge avec l'air et la température qui l'entourent, mais on revient rarement avec la trace de ce qu'il a vécu entre deux visites.</p>
+        <p>KeyMate supprime ce second poste et donne à chaque instrument une mémoire.</p>
+      </div>
+      <div class="figures" data-cascade>
+        <div class="figure drop" style="--i:0"><b>3</b><span>modules sur un seul rail</span></div>
+        <div class="figure drop" style="--i:1"><b>~1&nbsp;m</b><span>de rail au-dessus du clavier</span></div>
+        <div class="figure drop" style="--i:2"><b>3–4&nbsp;kg</b><span>l'ensemble, transportable</span></div>
+        <div class="figure drop" style="--i:3"><b>±&nbsp;10</b><span>cents de tolérance pour une note juste</span></div>
+      </div>
+      <p class="fine">Masse et longueur&nbsp;: valeurs de cadrage du prototype, confirmées sur le matériel réel.</p>
+    </div>
+  </section>
+
+  <!-- ============ COMMENT ÇA MARCHE ============ -->
+  <section class="section section--surface" id="fonctionnement" style="padding-bottom:0">
+    <div class="wrap section-head">
+      <h2>De la touche tenue à la note juste, en cinq temps.</h2>
+      <p class="lede">L'animation se joue toute seule. Cliquez une étape pour y revenir.</p>
+    </div>
+    <div class="story-track" id="storyTrack">
+      <div class="story-pin wrap">
+        <ol class="story-steps">
+          <li><button class="story-step" type="button"><span class="num">01</span><span class="step-title">Une touche à tenir</span><span class="step-text">Chaque tuyau ne sonne que si sa touche reste enfoncée. Jusqu'ici, c'était le rôle d'un assistant assis au clavier.</span></button></li>
+          <li><button class="story-step" type="button"><span class="num">02</span><span class="step-title">Le rail se pose sur la console</span><span class="step-text">Environ un mètre de profilé aluminium, posé au-dessus du clavier, sans intervention sur le meuble.</span></button></li>
+          <li><button class="story-step" type="button"><span class="num">03</span><span class="step-title">Un module rejoint la note et la tient</span><span class="step-text">Envoyé depuis l'application, il roule jusqu'à la touche, l'enfonce avec un embout souple et la maintient. Deux profils d'appui&nbsp;: touches blanches et noires.</span></button></li>
+          <li><button class="story-step" type="button"><span class="num">04</span><span class="step-title">Vous accordez, l'écart s'affiche</span><span class="step-text">L'application écoute le tuyau et calcule l'écart en cents par rapport au tempérament visé. Elle annonce la correction&nbsp;: <span class="kn-num">+22 cents</span>, trop haut, sortir la calotte.</span></button></li>
+          <li><button class="story-step" type="button"><span class="num">05</span><span class="step-title">Il relâche et passe à la suivante</span><span class="step-text">Le doigt remonte, le module file vers la note suivante. Chaque mesure rejoint le rapport d'intervention.</span></button></li>
+        </ol>
+        <div class="story-side">
+          <div class="story-stage" id="storyStage"></div>
+          <div class="story-controls"><div class="story-progress" id="storyProgress" aria-hidden="true"><i></i></div><button class="kn-btn kn-btn--ghost" id="storyPlay" type="button">Lecture</button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LE SYSTÈME ============ -->
+  <section class="section section--surface" id="systeme" style="border-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Quatre éléments, un seul outil.</h2>
+      </div>
+      <div class="cards" data-cascade>
+        <article class="kn-card drop" style="--i:0">
+          <img class="card-media" src="assets/detail.webp" alt="Vue rapprochée d'un module&nbsp;: l'embout souple appuie sur une touche noire" loading="lazy" width="1280" height="720">
+          <h3>Le rail et les modules</h3>
+          <p>Un profilé de 40 × 40 mm posé au-dessus du clavier. Jusqu'à trois modules autonomes s'y déplacent sans jamais se croiser&nbsp;: chacun se place au-dessus d'une touche, l'enfonce, la maintient et la relâche. Avec trois modules, un accord de trois notes se tient sans aide.</p>
+        </article>
+        <article class="kn-card drop" style="--i:1">
+          <h3>L'application de terrain</h3>
+          <p>Sur le téléphone du facteur. Elle envoie chaque module sur sa note, capte le son, calcule l'écart en cents par rapport au tempérament visé et reconnaît le tempérament de l'instrument.</p>
+          <p>Thème sombre, gros chiffres, boutons de 56 px&nbsp;: elle se lit à un mètre, debout, dans une tribune mal éclairée.</p>
+        </article>
+        <article class="kn-card drop" style="--i:2">
+          <h3>Le boîtier capteur</h3>
+          <p>Posé près de l'orgue, il suit en continu la température et l'humidité relative, les deux grandeurs qui déplacent l'accord entre deux visites. À votre retour, les données du dernier accord et de tout ce qui a suivi vous attendent.</p>
+        </article>
+        <article class="kn-card drop" style="--i:3">
+          <h3>Le tableau de bord</h3>
+          <p>Sur le web, pour tout le parc d'instruments que vous suivez&nbsp;: la carte des orgues, leurs conditions ambiantes, l'historique des interventions et le dossier complet de chaque instrument.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LA MESURE ============ -->
+  <section class="section" id="mesure">
+    <div class="wrap split">
+      <div class="prose">
+        <h2 style="font-size:var(--kn-fs-3xl)">Une mesure, pas une impression.</h2>
+        <p class="lede">L'application compare la fréquence captée à la fréquence cible du tempérament choisi, et affiche l'écart en cents, un centième de demi-ton.</p>
+        <p>À ± 10 cents, la note est juste. Au-delà, elle dit dans quel sens corriger, toujours avec un signe et un libellé, jamais par la couleur seule.</p>
+        <ul class="facts">
+          <li><span>Tempéraments</span><span>égal, Werckmeister III, Kirnberger III, mésotonique</span></li>
+          <li><span>Diapason</span><span class="kn-num">440 Hz · 415 Hz</span></li>
+          <li><span>Tolérance « juste »</span><span class="kn-num">± 10 cents</span></li>
+        </ul>
+        <p>KeyMate ne remplace pas l'oreille du facteur&nbsp;: il lui rend les mains libres, et lui évite de mesurer deux fois ce qui a déjà été relevé.</p>
+      </div>
+      <div class="gauges" data-cascade>
+        <div class="kn-card gauge-card drop" style="--i:0">
+          <div class="top"><b>Mi 3</b><span class="kn-num v" style="color:var(--kn-flat)">−18</span></div>
+          <div class="kn-gauge" data-state="flat" style="--kn-cents:-18" aria-hidden="true"><div class="kn-gauge__zone"></div><div class="kn-gauge__needle"></div></div>
+          <div class="row"><span class="kn-badge kn-badge--flat">− Trop bas</span>Rallonger le tuyau&nbsp;: rentrer la calotte.</div>
+        </div>
+        <div class="kn-card gauge-card drop" style="--i:1">
+          <div class="top"><b>Sol 3</b><span class="kn-num v" style="color:var(--kn-tuned)">+4</span></div>
+          <div class="kn-gauge" data-state="tuned" style="--kn-cents:4" aria-hidden="true"><div class="kn-gauge__zone"></div><div class="kn-gauge__needle"></div></div>
+          <div class="row"><span class="kn-badge kn-badge--tuned">✓ Juste</span>Dans la tolérance. Passer à la note suivante.</div>
+        </div>
+        <div class="kn-card gauge-card drop" style="--i:2">
+          <div class="top"><b>Do 4</b><span class="kn-num v" style="color:var(--kn-sharp)">+22</span></div>
+          <div class="kn-gauge" data-state="sharp" style="--kn-cents:22" aria-hidden="true"><div class="kn-gauge__zone"></div><div class="kn-gauge__needle"></div></div>
+          <div class="row"><span class="kn-badge kn-badge--sharp">+ Trop haut</span>Raccourcir le tuyau&nbsp;: sortir la calotte.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MISE EN PLACE ============ -->
+  <section class="section section--surface" id="installation">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Installé en quatre étapes, sans outil sur l'orgue.</h2>
+      </div>
+      <ol class="steps4" data-cascade>
+        <li class="drop" style="--i:0;background:var(--kn-bg)"><span class="num">01</span><h3>Poser le rail</h3><p>Au-dessus du clavier, sur la console.</p></li>
+        <li class="drop" style="--i:1;background:var(--kn-bg)"><span class="num">02</span><h3>Décrire le clavier</h3><p>Dans l'application&nbsp;: la tessiture, puis la largeur des touches blanches et noires, en centimètres.</p></li>
+        <li class="drop" style="--i:2;background:var(--kn-bg)"><span class="num">03</span><h3>Placer les modules</h3><p>Chacun au-dessus d'une touche.</p></li>
+        <li class="drop" style="--i:3;background:var(--kn-bg)"><span class="num">04</span><h3>Associer chaque module</h3><p>Sélectionnez dans l'application la touche de chaque module. C'est vous qui déclarez la position, rien n'est deviné.</p></li>
+      </ol>
+      <p class="fine">Le facteur ne descend plus au clavier qu'une fois par jeu pour placer les modules, au lieu d'un aller-retour à chaque note.</p>
+    </div>
+  </section>
+
+  <!-- ============ FICHE TECHNIQUE ============ -->
+  <section class="section" id="fiche">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Fiche technique</h2>
+      </div>
+      <dl class="specs" data-cascade>
+        <div class="drop" style="--i:0"><dt>Modules</dt><dd>jusqu'à <span class="kn-num">3</span>, indépendants</dd></div>
+        <div class="drop" style="--i:1"><dt>Rail</dt><dd>profilé alu <span class="kn-num">40 × 40 mm</span></dd></div>
+        <div class="drop" style="--i:2"><dt>Course utile</dt><dd class="kn-num">~1 000 mm</dd></div>
+        <div class="drop" style="--i:3"><dt>Largeur d'un module</dt><dd class="kn-num">~100 mm</dd></div>
+        <div class="drop" style="--i:4"><dt>Motorisation</dt><dd>pas à pas NEMA 17, courroie GT2</dd></div>
+        <div class="drop" style="--i:5"><dt>Liaison application ↔ modules</dt><dd>Bluetooth Low Energy</dd></div>
+        <div class="drop" style="--i:6"><dt>Alimentation</dt><dd><span class="kn-num">24 V</span>, commune aux modules</dd></div>
+        <div class="drop" style="--i:7"><dt>Boîtier capteur</dt><dd>température, %HR</dd></div>
+        <div class="drop" style="--i:8"><dt>Masse de l'ensemble</dt><dd><span class="kn-num">3</span> à <span class="kn-num">4 kg</span></dd></div>
+        <div class="drop" style="--i:9"><dt>Diapason</dt><dd class="kn-num">440 Hz · 415 Hz</dd></div>
+      </dl>
+      <p class="fine">Valeurs de cadrage du prototype, confirmées à la réception du matériel.</p>
+    </div>
+  </section>
+
+  <!-- ============ DISPONIBILITÉ ============ -->
+  <section class="section section--surface" id="disponibilite">
+    <div class="wrap cta-band">
+      <div class="prose">
+        <h2>En France à partir de février 2027.</h2>
+        <p class="lede">Puis en Europe. Les conditions de commercialisation seront communiquées à l'approche de la sortie.</p>
+      </div>
+      <div class="actions">
+        <a class="kn-btn kn-btn--primary" href="contact.html">Nous contacter</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap in">
+    <div class="foot-brand"><svg viewBox="0 0 64 64" aria-hidden="true"><g fill="currentColor"><path d="M6.5 50 V29.5 A3.5 3.5 0 0 1 13.5 29.5 V50 Z"/><path d="M17.5 50 V19.5 A3.5 3.5 0 0 1 24.5 19.5 V50 Z"/><path d="M39.5 50 V19.5 A3.5 3.5 0 0 1 46.5 19.5 V50 Z"/><path d="M50.5 50 V29.5 A3.5 3.5 0 0 1 57.5 29.5 V50 Z"/><rect x="2" y="52" width="60" height="5" rx="2.5"/></g><g style="fill:var(--kn-accent)"><path d="M28.5 50 V9.5 A3.5 3.5 0 0 1 35.5 9.5 V50 Z"/><rect x="25" y="58" width="14" height="5" rx="2"/></g></svg><div><b>KeyMate</b><span class="kn-label">Un outil 2Morgan</span></div></div>
+    <nav class="foot-links" aria-label="Pied de page"><a href="index.html">Le produit</a><a href="a-propos.html">À propos</a><a href="contact.html">Contact</a><a href="mentions-legales.html">Mentions légales</a></nav>
+    <p class="foot-meta">2Morgan · <a href="mailto:2morgan.sigl@gmail.com">2morgan.sigl@gmail.com</a> · © 2026 · KeyMate est une marque de 2Morgan.</p>
+  </div>
+</footer>
+</body>
+</html>

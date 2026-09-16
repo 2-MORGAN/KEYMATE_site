@@ -1,0 +1,493 @@
+/* ============================================================
+   KeyMate — Design tokens
+   Produit KeyMate · Societe 2Morgan
+   Version 1.0 — 2026-07-31 — direction arretee
+
+   Deux themes, une seule identite :
+     sombre « L'atelier »          -> app facteur (terrain), defaut
+     clair  « Le cahier d'atelier » -> dashboard, rapports, impression
+
+   Typographie : superfamille IBM Plex (Serif / Sans / Mono), licence OFL.
+   Marque      : le laiton est present dans les DEUX themes. C'est la
+                 couleur de KeyMate, elle ne change pas avec le theme.
+
+   Usage :
+     import '@fontsource/ibm-plex-serif/400.css';
+     import '@fontsource/ibm-plex-serif/600.css';
+     import '@fontsource/ibm-plex-sans/400.css';
+     import '@fontsource/ibm-plex-sans/500.css';
+     import '@fontsource/ibm-plex-sans/600.css';
+     import '@fontsource/ibm-plex-mono/400.css';
+     import '@fontsource/ibm-plex-mono/600.css';
+     import 'keymate-tokens.css';
+
+   Theme : <html data-theme="dark"> ou <html data-theme="light">.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1. PALETTE BRUTE
+      Ne jamais utiliser ces variables dans un composant.
+      Passer par les tokens semantiques de la section 2 ou 3.
+   ------------------------------------------------------------ */
+:root {
+  /* Ebene — noirs chauds teintes brun. Jamais de gris neutre. */
+  --kn-ebene-900: #12100e;
+  --kn-ebene-800: #1b1815;
+  --kn-ebene-700: #24201b;
+  --kn-ebene-600: #2e2822;
+  --kn-ebene-500: #3a322a;
+  --kn-ebene-400: #4e4337;
+
+  /* Papier — les clairs, cremes. Jamais de blanc pur en fond de page. */
+  --kn-papier-100: #ffffff;
+  --kn-papier-200: #fbf8f0;
+  --kn-papier-300: #f2ede1;
+  --kn-papier-400: #e8e1d0;
+  --kn-papier-500: #d5ccb8;
+  --kn-papier-600: #bfb49c;
+  --kn-ivoire: #f0e9dc; /* texte sur fond sombre */
+
+  /* Laiton — la couleur de marque, dans les deux themes */
+  --kn-laiton-300: #e0c368;
+  --kn-laiton-400: #c9a227;
+  --kn-laiton-600: #6e5709;
+  --kn-laiton-700: #574508;
+
+  /* Encre bleu-noir — texte du theme clair */
+  --kn-encre-900: #1b2430;
+  --kn-encre-600: #4a5462;
+  --kn-encre-400: #6b7480;
+
+  /* Taupe — texte secondaire du theme sombre */
+  --kn-taupe-300: #b3a695;
+  --kn-taupe-500: #7c7161;
+
+  /* Rouge tampon — annotation, propre au theme clair */
+  --kn-tampon-500: #9e3226;
+  --kn-tampon-300: #d2755f;
+
+  /* Semantique d'accord */
+  --kn-bleu-300: #7fa3c4; /* trop bas / bemol */
+  --kn-bleu-600: #245272;
+  --kn-vert-300: #86a96f; /* juste */
+  --kn-vert-600: #3d6437;
+  --kn-cuivre-300: #db8a4e; /* trop haut / diese */
+  --kn-cuivre-600: #994b24;
+
+  /* Etats systeme */
+  --kn-ambre-300: #e0ae4a;
+  --kn-ambre-600: #7c5810;
+  --kn-rouge-300: #e06b5a;
+  --kn-rouge-600: #8e2c22;
+}
+
+/* ------------------------------------------------------------
+   2. THEME SOMBRE — « L'atelier »
+      App facteur. Bois sombre, ivoire des touches, laiton des tuyaux.
+      C'est le theme par defaut : on travaille dans une tribune.
+   ------------------------------------------------------------ */
+:root,
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --kn-bg: var(--kn-ebene-900);
+  --kn-surface: var(--kn-ebene-800);
+  --kn-surface-raised: var(--kn-ebene-700);
+  --kn-surface-sunken: #0d0b0a;
+  --kn-overlay: rgb(9 8 7 / 0.72);
+
+  --kn-border: var(--kn-ebene-500);
+  --kn-border-strong: var(--kn-ebene-400);
+  --kn-border-subtle: var(--kn-ebene-600);
+
+  --kn-text: var(--kn-ivoire);
+  --kn-text-muted: var(--kn-taupe-300);
+  --kn-text-faint: var(--kn-taupe-500);
+  --kn-text-inverse: var(--kn-ebene-900);
+
+  --kn-accent: var(--kn-laiton-400);
+  --kn-accent-hover: var(--kn-laiton-300);
+  --kn-accent-quiet: rgb(201 162 39 / 0.14);
+  --kn-on-accent: var(--kn-ebene-900);
+
+  --kn-annotation: var(--kn-tampon-300);
+  --kn-annotation-quiet: rgb(210 117 95 / 0.14);
+
+  --kn-flat: var(--kn-bleu-300);
+  --kn-flat-quiet: rgb(127 163 196 / 0.16);
+  --kn-tuned: var(--kn-vert-300);
+  --kn-tuned-quiet: rgb(134 169 111 / 0.16);
+  --kn-sharp: var(--kn-cuivre-300);
+  --kn-sharp-quiet: rgb(219 138 78 / 0.16);
+
+  --kn-warn: var(--kn-ambre-300);
+  --kn-warn-quiet: rgb(224 174 74 / 0.14);
+  --kn-danger: var(--kn-rouge-300);
+  --kn-danger-quiet: rgb(224 107 90 / 0.14);
+
+  --kn-shadow-1: 0 1px 2px rgb(0 0 0 / 0.5);
+  --kn-shadow-2: 0 4px 12px rgb(0 0 0 / 0.45);
+  --kn-shadow-3: 0 12px 32px rgb(0 0 0 / 0.5);
+  --kn-hairline: inset 0 1px 0 rgb(255 250 235 / 0.05);
+}
+
+/* ------------------------------------------------------------
+   3. THEME CLAIR — « Le cahier d'atelier »
+      Dashboard, rapports, impression. Papier creme, encre bleu-noir.
+      Le laiton reste la couleur d'action ; le rouge tampon sert
+      uniquement a l'annotation (mentions, en-tetes de rapport,
+      « a corriger »). Ne jamais en faire un bouton principal.
+   ------------------------------------------------------------ */
+[data-theme='light'] {
+  color-scheme: light;
+
+  --kn-bg: var(--kn-papier-300);
+  --kn-surface: var(--kn-papier-200);
+  --kn-surface-raised: var(--kn-papier-100);
+  --kn-surface-sunken: var(--kn-papier-400);
+  --kn-overlay: rgb(27 36 48 / 0.42);
+
+  --kn-border: var(--kn-papier-500);
+  --kn-border-strong: var(--kn-papier-600);
+  --kn-border-subtle: #e4dcc9;
+
+  --kn-text: var(--kn-encre-900);
+  --kn-text-muted: var(--kn-encre-600);
+  --kn-text-faint: var(--kn-encre-400);
+  --kn-text-inverse: var(--kn-papier-200);
+
+  --kn-accent: var(--kn-laiton-600);
+  --kn-accent-hover: var(--kn-laiton-700);
+  --kn-accent-quiet: rgb(110 87 9 / 0.1);
+  --kn-on-accent: var(--kn-papier-200);
+
+  --kn-annotation: var(--kn-tampon-500);
+  --kn-annotation-quiet: rgb(158 50 38 / 0.1);
+
+  --kn-flat: var(--kn-bleu-600);
+  --kn-flat-quiet: rgb(36 82 114 / 0.1);
+  --kn-tuned: var(--kn-vert-600);
+  --kn-tuned-quiet: rgb(61 100 55 / 0.1);
+  --kn-sharp: var(--kn-cuivre-600);
+  --kn-sharp-quiet: rgb(153 75 36 / 0.1);
+
+  --kn-warn: var(--kn-ambre-600);
+  --kn-warn-quiet: rgb(124 88 16 / 0.1);
+  --kn-danger: var(--kn-rouge-600);
+  --kn-danger-quiet: rgb(142 44 34 / 0.1);
+
+  --kn-shadow-1: 0 1px 2px rgb(60 50 30 / 0.1);
+  --kn-shadow-2: 0 4px 12px rgb(60 50 30 / 0.1);
+  --kn-shadow-3: 0 12px 32px rgb(60 50 30 / 0.14);
+  --kn-hairline: inset 0 1px 0 rgb(255 255 255 / 0.8);
+}
+
+/* ------------------------------------------------------------
+   4. TYPOGRAPHIE
+      Serif = titres (le cote grave des vieilles consoles)
+      Sans  = interface
+      Mono  = toute mesure chiffree, en chiffres tabulaires
+   ------------------------------------------------------------ */
+:root {
+  --kn-font-title: 'IBM Plex Serif', Georgia, 'Times New Roman', serif;
+  --kn-font-ui: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --kn-font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Consolas, monospace;
+
+  /* Echelle 1.25, base 15 px */
+  --kn-fs-xs: 0.75rem;
+  --kn-fs-sm: 0.8125rem;
+  --kn-fs-base: 0.9375rem;
+  --kn-fs-md: 1.0625rem; /* corps de l'app terrain */
+  --kn-fs-lg: 1.25rem;
+  --kn-fs-xl: 1.5625rem;
+  --kn-fs-2xl: 1.9375rem;
+  --kn-fs-3xl: 2.4375rem; /* ecart d'accord plein ecran */
+
+  --kn-lh-tight: 1.2;
+  --kn-lh-snug: 1.35;
+  --kn-lh-base: 1.55;
+
+  --kn-fw-regular: 400;
+  --kn-fw-medium: 500;
+  --kn-fw-semibold: 600;
+
+  --kn-ls-title: -0.01em;
+  --kn-ls-caps: 0.09em;
+}
+
+/* ------------------------------------------------------------
+   5. ESPACEMENT, RAYONS, CIBLES
+   ------------------------------------------------------------ */
+:root {
+  --kn-sp-1: 0.25rem;
+  --kn-sp-2: 0.5rem;
+  --kn-sp-3: 0.75rem;
+  --kn-sp-4: 1rem;
+  --kn-sp-5: 1.5rem;
+  --kn-sp-6: 2rem;
+  --kn-sp-7: 3rem;
+  --kn-sp-8: 4rem;
+
+  --kn-radius-sm: 3px;
+  --kn-radius-md: 6px;
+  --kn-radius-lg: 10px;
+  --kn-radius-pill: 999px;
+
+  /* Cible tactile minimale. 48 px partout, 56 px dans l'app terrain :
+     on vise ces boutons debout, dans le noir, parfois avec des gants. */
+  --kn-touch-min: 48px;
+  --kn-touch-comfort: 56px;
+
+  --kn-focus-ring: 0 0 0 2px var(--kn-bg), 0 0 0 4px var(--kn-accent);
+  --kn-transition: 120ms ease-out;
+  --kn-content-max: 72ch;
+}
+
+/* ------------------------------------------------------------
+   6. BASE
+   ------------------------------------------------------------ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--kn-bg);
+  color: var(--kn-text);
+  font-family: var(--kn-font-ui);
+  font-size: var(--kn-fs-base);
+  line-height: var(--kn-lh-base);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--kn-font-title);
+  font-weight: var(--kn-fw-semibold);
+  line-height: var(--kn-lh-tight);
+  letter-spacing: var(--kn-ls-title);
+  margin: 0 0 var(--kn-sp-3);
+}
+
+h1 { font-size: var(--kn-fs-2xl); }
+h2 { font-size: var(--kn-fs-xl); }
+h3 { font-size: var(--kn-fs-lg); }
+h4 { font-size: var(--kn-fs-md); }
+
+/* Toute donnee chiffree passe en mono tabulaire : un ecart qui passe
+   de 9 a 10 cents ne doit pas faire sauter la mise en page. */
+.kn-num,
+[data-num] {
+  font-family: var(--kn-font-mono);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+}
+
+.kn-label {
+  font-size: var(--kn-fs-xs);
+  font-weight: var(--kn-fw-semibold);
+  letter-spacing: var(--kn-ls-caps);
+  text-transform: uppercase;
+  color: var(--kn-text-muted);
+}
+
+:where(a) {
+  color: var(--kn-accent);
+  text-underline-offset: 2px;
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--kn-focus-ring);
+  border-radius: var(--kn-radius-sm);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* ------------------------------------------------------------
+   7. COMPOSANTS
+   ------------------------------------------------------------ */
+
+/* --- Boutons --------------------------------------------------- */
+.kn-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--kn-sp-2);
+  min-height: var(--kn-touch-min);
+  padding: 0 var(--kn-sp-4);
+  border: var(--kn-border-width, 1px) solid transparent;
+  border-radius: var(--kn-radius-md);
+  background: var(--kn-surface-raised);
+  color: var(--kn-text);
+  font: inherit;
+  font-weight: var(--kn-fw-medium);
+  cursor: pointer;
+  transition: background var(--kn-transition), border-color var(--kn-transition);
+}
+.kn-btn:hover { background: var(--kn-border-subtle); }
+
+.kn-btn--primary {
+  background: var(--kn-accent);
+  color: var(--kn-on-accent);
+  font-weight: var(--kn-fw-semibold);
+}
+.kn-btn--primary:hover { background: var(--kn-accent-hover); }
+
+.kn-btn--ghost {
+  background: transparent;
+  border-color: var(--kn-border-strong);
+  color: var(--kn-text);
+}
+.kn-btn--ghost:hover {
+  background: var(--kn-accent-quiet);
+  border-color: var(--kn-accent);
+}
+
+.kn-btn--danger {
+  background: transparent;
+  border-color: var(--kn-danger);
+  color: var(--kn-danger);
+}
+.kn-btn--danger:hover { background: var(--kn-danger-quiet); }
+
+.kn-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.kn-btn--field {
+  min-height: var(--kn-touch-comfort);
+  width: 100%;
+  font-size: var(--kn-fs-md);
+}
+
+/* --- Carte ----------------------------------------------------- */
+.kn-card {
+  background: var(--kn-surface);
+  border: 1px solid var(--kn-border);
+  border-radius: var(--kn-radius-lg);
+  padding: var(--kn-sp-5);
+  box-shadow: var(--kn-shadow-1), var(--kn-hairline);
+}
+
+/* --- Badges ---------------------------------------------------- */
+.kn-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--kn-sp-1);
+  padding: 2px var(--kn-sp-2);
+  border-radius: var(--kn-radius-sm);
+  font-size: var(--kn-fs-xs);
+  font-weight: var(--kn-fw-semibold);
+  letter-spacing: 0.03em;
+  border: 1px solid currentColor;
+}
+.kn-badge--tuned { color: var(--kn-tuned); background: var(--kn-tuned-quiet); }
+.kn-badge--flat { color: var(--kn-flat); background: var(--kn-flat-quiet); }
+.kn-badge--sharp { color: var(--kn-sharp); background: var(--kn-sharp-quiet); }
+.kn-badge--warn { color: var(--kn-warn); background: var(--kn-warn-quiet); }
+.kn-badge--danger { color: var(--kn-danger); background: var(--kn-danger-quiet); }
+.kn-badge--annotation { color: var(--kn-annotation); background: var(--kn-annotation-quiet); }
+
+/* --- Champs ---------------------------------------------------- */
+.kn-input,
+.kn-select {
+  width: 100%;
+  min-height: var(--kn-touch-min);
+  padding: 0 var(--kn-sp-3);
+  background: var(--kn-surface-sunken);
+  border: 1px solid var(--kn-border-strong);
+  border-radius: var(--kn-radius-md);
+  color: var(--kn-text);
+  font: inherit;
+}
+.kn-input::placeholder { color: var(--kn-text-faint); }
+
+/* --- Tableau --------------------------------------------------- */
+.kn-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--kn-fs-sm);
+}
+.kn-table th {
+  text-align: left;
+  font-size: var(--kn-fs-xs);
+  font-weight: var(--kn-fw-semibold);
+  letter-spacing: var(--kn-ls-caps);
+  text-transform: uppercase;
+  color: var(--kn-text-muted);
+  padding: var(--kn-sp-2) var(--kn-sp-3);
+  border-bottom: 1px solid var(--kn-border-strong);
+}
+.kn-table td {
+  padding: var(--kn-sp-3);
+  border-bottom: 1px solid var(--kn-border-subtle);
+}
+.kn-table tbody tr:hover { background: var(--kn-accent-quiet); }
+
+/* --- Jauge d'ecart d'accord ------------------------------------
+   Composant signature. Piloter via --kn-cents (ecart en cents,
+   borne a +/- 50) et data-state = flat | tuned | sharp.
+   ---------------------------------------------------------------- */
+.kn-gauge {
+  --kn-cents: 0;
+  --kn-gauge-range: 50;
+  position: relative;
+  height: 64px;
+  background: var(--kn-surface-sunken);
+  border: 1px solid var(--kn-border);
+  border-radius: var(--kn-radius-md);
+  overflow: hidden;
+}
+.kn-gauge__zone {
+  position: absolute;
+  inset: 0 40%;
+  background: var(--kn-tuned-quiet);
+  border-inline: 1px solid var(--kn-tuned);
+}
+.kn-gauge__needle {
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  width: 3px;
+  border-radius: 2px;
+  background: var(--kn-accent);
+  left: calc(50% + (var(--kn-cents) / var(--kn-gauge-range)) * 50%);
+  transform: translateX(-50%);
+  transition: left 180ms cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+.kn-gauge[data-state='flat'] .kn-gauge__needle { background: var(--kn-flat); }
+.kn-gauge[data-state='tuned'] .kn-gauge__needle { background: var(--kn-tuned); }
+.kn-gauge[data-state='sharp'] .kn-gauge__needle { background: var(--kn-sharp); }
+
+/* ------------------------------------------------------------
+   8. IMPRESSION — rapports d'intervention
+      Un rapport finit dans un classeur : theme clair force.
+   ------------------------------------------------------------ */
+@media print {
+  :root {
+    --kn-bg: #ffffff;
+    --kn-surface: #ffffff;
+    --kn-surface-raised: #ffffff;
+    --kn-surface-sunken: #ffffff;
+    --kn-text: #000000;
+    --kn-text-muted: #3a3a3a;
+    --kn-border: #999999;
+    --kn-accent: #574508;
+    --kn-annotation: #8e2c22;
+  }
+  .kn-card { box-shadow: none; break-inside: avoid; }
+}
