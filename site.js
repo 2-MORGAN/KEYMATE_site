@@ -1,4 +1,4 @@
-/* KeyMate — site vitrine : thème, ouverture du héros, scrollytelling, cascade. Aucune dépendance. */
+/* KeyMate — site vitrine : thème, ouverture du héros, scrollytelling, tarifs, cascade. Aucune dépendance. */
 (() => {
   const root = document.documentElement;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -15,8 +15,9 @@
   const syncTheme = () => {                                         // le bouton dit l'action, pas l'état
     const dark = root.dataset.theme !== 'light';
     const label = dark ? 'Passer en clair' : 'Passer en sombre';
-    themeBtn.innerHTML = `${dark ? SUN : MOON}<span class="theme-label">${label}</span>`;
+    themeBtn.innerHTML = `${dark ? SUN : MOON}<span>${dark ? 'Clair' : 'Sombre'}</span>`;   // icône + libellé court dessous
     themeBtn.setAttribute('aria-label', label);
+    themeBtn.title = label;
   };
   if (themeBtn) {
     themeBtn.addEventListener('click', () => {
@@ -31,6 +32,11 @@
   const navH = () => root.style.setProperty('--nav-h', `${nav.offsetHeight}px`);
   navH();
   addEventListener('resize', navH);
+  // barre transparente tant qu'on est sur la vidéo du héros, pleine ensuite (et toujours pleine sans héros)
+  const heroEl = $('#hero');
+  const syncNav = () => nav.classList.toggle('is-solid', !heroEl || scrollY > heroEl.offsetHeight - nav.offsetHeight);
+  syncNav();
+  addEventListener('scroll', syncNav, { passive: true });
 
   /* ---------- cascade : seulement pour ce qui n'est pas déjà à l'écran ---------- */
   $$('[data-cascade]').forEach((box) => {
@@ -77,7 +83,14 @@
     const at = (ms, fn) => timers.push(setTimeout(fn, ms));
     const hidden = [{ opacity: 0 }, { opacity: 0 }];
 
-    const syncVideoBtn = () => { playBtn.textContent = video.paused ? 'Lire l’animation' : 'Mettre en pause'; };
+    const PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
+    const PLAY = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l11-6.5a1 1 0 0 0 0-1.72l-11-6.5A1 1 0 0 0 8 5.5Z"/></svg>';
+    const syncVideoBtn = () => {
+      const label = video.paused ? 'Lire l’animation' : 'Mettre en pause';
+      playBtn.innerHTML = video.paused ? PLAY : PAUSE;
+      playBtn.setAttribute('aria-label', label);
+      playBtn.title = label;
+    };
     video.addEventListener('play', syncVideoBtn);
     video.addEventListener('pause', syncVideoBtn);
     playBtn.addEventListener('click', () => (video.paused ? video.play() : video.pause()));
@@ -227,6 +240,58 @@
       }, { threshold: [0, 0.85] }).observe($('#storyStage'));
       render();
     }
+  }
+
+  /* ---------- tarifs : prix par mois ou par an ---------- */
+  const eur = (n) => `${Math.round(n).toLocaleString('fr-FR')} €`;
+  const perBtns = $$('[data-per]');
+  perBtns.forEach((btn) => btn.addEventListener('click', () => {
+    const per = btn.dataset.per;
+    perBtns.forEach((b) => b.setAttribute('aria-pressed', b === btn));
+    $$('[data-m]').forEach((b) => { b.textContent = eur(b.dataset.m * (per === 'an' ? 12 : 1)); });
+    $$('[data-unit]').forEach((s) => { s.textContent = `/${per}${s.dataset.unit ? ` ${s.dataset.unit}` : ''}`; });
+  }));
+
+  /* ---------- KeyMate ou un assistant : coût sur 1 ou 3 ans, courbe cumulée ---------- */
+  const cumul = $('#cumulSvg');
+  if (cumul) {
+    const KM_MONTH = 690, AS_YEAR = 62000;                         // ponytail: hypothèses du business case en dur
+    const W = 640, H = 300, L = 56, B = 30, R = 16, MAXM = 36, MAXY = 200000;
+    const x = (m) => L + (m / MAXM) * (W - L - R), y = (v) => H - B - (v / MAXY) * (H - B - 12);
+    const km = (m) => KM_MONTH * m, as = (m) => (AS_YEAR / 12) * m;
+    const line = (f) => Array.from({ length: MAXM + 1 }, (_, m) => `${m ? 'L' : 'M'}${x(m).toFixed(1)} ${y(f(m)).toFixed(1)}`).join(' ');
+    cumul.innerHTML = [0, 50000, 100000, 150000, 200000].map((v) => `<line class="cumul-grid" x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}"/><text class="cumul-ax" x="${L - 8}" y="${y(v) + 4}" text-anchor="end">${v / 1000} k€</text>`).join('')
+      + [0, 12, 24, 36].map((m) => `<text class="cumul-ax" x="${x(m)}" y="${H - 8}" text-anchor="middle">${m ? `${m / 12} an${m > 12 ? 's' : ''}` : '0'}</text>`).join('')
+      + `<path class="cumul-line is-as" d="${line(as)}"/><path class="cumul-line is-km" d="${line(km)}"/>`
+      + `<line class="cumul-cursor" y1="12" y2="${H - B}"/><circle class="cumul-dot is-as" r="5"/><circle class="cumul-dot is-km" r="5"/>`;
+    const input = $('#cumulMonth'), cursor = $('.cumul-cursor', cumul), dotAs = $('circle.is-as', cumul), dotKm = $('circle.is-km', cumul);
+    const setMonth = (m) => {
+      input.value = m;
+      cursor.setAttribute('x1', x(m)); cursor.setAttribute('x2', x(m));
+      dotAs.setAttribute('cx', x(m)); dotAs.setAttribute('cy', y(as(m)));
+      dotKm.setAttribute('cx', x(m)); dotKm.setAttribute('cy', y(km(m)));
+      $('#cumulMonthLabel').textContent = `Au bout de ${m} mois`;
+      $('#cumulAs').textContent = eur(as(m));
+      $('#cumulKm').textContent = eur(km(m));
+      $('#cumulGap').innerHTML = `KeyMate vous a fait économiser <span class="kn-num">${eur(as(m) - km(m))}</span>.`;
+    };
+    const fromPointer = (e) => {
+      const r = cumul.getBoundingClientRect();
+      setMonth(Math.min(MAXM, Math.max(1, Math.round(((((e.clientX - r.left) / r.width) * W - L) / (W - L - R)) * MAXM))));
+    };
+    cumul.addEventListener('pointermove', fromPointer);
+    cumul.addEventListener('pointerdown', fromPointer);
+    input.addEventListener('input', () => setMonth(+input.value));
+
+    const yearBtns = $$('[data-years]');                            // 1 an / 3 ans : coût du tableau et curseur de la courbe
+    yearBtns.forEach((btn) => btn.addEventListener('click', () => {
+      const n = +btn.dataset.years;
+      yearBtns.forEach((b) => b.setAttribute('aria-pressed', b === btn));
+      $('#costKm').textContent = eur(km(12 * n));
+      $('#costAs').textContent = eur(as(12 * n));
+      setMonth(12 * n);
+    }));
+    setMonth(12);
   }
 
   /* ---------- contact : copier l'adresse (mailto ne marche pas sans logiciel de messagerie) ---------- */
